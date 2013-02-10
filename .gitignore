@@ -4,3 +4,4 @@ doc/*
 pkg/*
 test/repo
 /vendor/bundle
+Gemfile.lock
