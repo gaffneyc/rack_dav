@@ -402,7 +402,7 @@ module RackDAV
               for name, value in props
                 if value.is_a?(Nokogiri::XML::Node)
                   xml.send(name) do
-                    rexml_convert(xml, value)
+                    xml_convert(xml, value)
                   end
                 else
                   xml.send(name, value)
@@ -472,7 +472,7 @@ module RackDAV
         end
       end
 
-      def rexml_convert(xml, element)
+      def xml_convert(xml, element)
         if element.elements.empty?
           if element.text
             xml.send(element.name.to_sym, element.text, element.attributes)
@@ -482,7 +482,7 @@ module RackDAV
         else
           xml.send(element.name.to_sym, element.attributes) do
             element.elements.each do |child|
-              rexml_convert(xml, child)
+              xml_convert(xml, child)
             end
           end
         end
