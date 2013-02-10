@@ -5,3 +5,4 @@ pkg/*
 test/repo
 /vendor/bundle
 Gemfile.lock
+.*.sw[o,p]
