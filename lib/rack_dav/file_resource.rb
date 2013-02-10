@@ -5,6 +5,11 @@ module RackDAV
   class FileResource < Resource
     include WEBrick::HTTPUtils
 
+    def initialize(path, options = {})
+      options[:root] ||= Dir.pwd
+      super
+    end
+
     # If this is a collection, return the child resources.
     def children
       Dir[file_path + '/*'].map do |path|

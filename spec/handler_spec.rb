@@ -25,13 +25,5 @@ describe RackDAV::Handler do
       instance = klass.new
       instance.options[:resource_class].should be(RackDAV::FileResource)
     end
-
-    it "defaults option :root to current directory" do
-      path = File.expand_path("../../bin", __FILE__)
-      Dir.chdir(path)
-      instance = klass.new
-      instance.options[:root].should == path
-    end
   end
-
 end

@@ -16,8 +16,7 @@ module RackDAV
     #
     def initialize(options = {})
       @options = {
-        :resource_class => FileResource,
-        :root => Dir.pwd
+        :resource_class => FileResource
       }.merge(options)
     end
 
