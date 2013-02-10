@@ -25,7 +25,10 @@ module RackDAV
       response = Rack::Response.new
 
       begin
-        controller = Controller.new(request, response, @options)
+        opts = @options.dup
+        opts[:env] ||= env
+
+        controller = Controller.new(request, response, opts)
         controller.send(request.request_method.downcase)
 
       rescue HTTPStatus::Status => status

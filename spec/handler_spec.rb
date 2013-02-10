@@ -26,4 +26,13 @@ describe RackDAV::Handler do
       instance.options[:resource_class].should be(RackDAV::FileResource)
     end
   end
+
+  it "passes the rack environment through via options" do
+    RackDAV::Controller.should_receive(:new).with do |_,_, options|
+      options[:env].should == { "REQUEST_METHOD" => "GET" }
+    end.and_return double("Controller", :get => nil)
+
+    handler = klass.new({})
+    handler.call({ "REQUEST_METHOD" => "GET" })
+  end
 end
